@@ -6,7 +6,7 @@ userRouter.put('/switchstatus/:id', toggleUserStatus);
 userRouter.put('/set-role', setuserRole);
 userRouter.put('/changepassword', changePassword);
 userRouter.put('/reset-password', resetPassword);
-userRouter.post('/:id?', createUser)
+/* userRouter.post('/:id?', createUser)*/
 userRouter.get('/', getUsers)
 userRouter.get('/getUserbyToken', getUserbyToken)
 userRouter.get('/:id', getUserById)

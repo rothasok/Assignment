@@ -13,9 +13,9 @@ const fileSchema = new mongoose.Schema({
     num: { type: String, required: true },
     title: { type: String, required: true },
     type:{ type: String},
-    permissionid: { type: mongoose.Types.ObjectId, ref: 'Permissions', },
+    /* permissionid: { type: mongoose.Types.ObjectId, ref: 'Permissions', }*/
+    role: { type: mongoose.Types.ObjectId, ref: 'Role', },
 })
 
 const FileModel = mongoose.model('Files', fileSchema)
-
 module.exports = FileModel

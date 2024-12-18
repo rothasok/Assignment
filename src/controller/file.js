@@ -21,18 +21,39 @@ const getAllFiles = asyncHandler(async (req, res) => {
 })
 
 
-const getFilebyPermissionID = asyncHandler(async (req, res) => {
-    const perId = req.params.id;
+// const getFilebyPermissionID = asyncHandler(async (req, res) => {
+//     const perId = req.params.id;
+    
+//     try {
+//         const per = await permissionsModel.findById(perId);
+//         if (!per) {
+//             return res.status(404).json({ message: "permission not found" });
+//         }
+
+//         const type = req.query;
+//         // Include the roleId in the query conditions
+//         const query = { ...type, permissionid: perId };
+
+//         const files = await FileModel.find(query);
+//         return res.json(files);
+//     } catch (error) {
+//         return res.status(500).json({ message: "Server error", error: error.message });
+//     }
+// });
+
+
+const getFilebyRoleID = asyncHandler(async (req, res) => {
+    const roleId = req.params.id;
     
     try {
-        const per = await permissionsModel.findById(perId);
-        if (!per) {
-            return res.status(404).json({ message: "permission not found" });
+        const role = await RoleModel.findById(roleId);
+        if (!role) {
+            return res.status(404).json({ message: "Role not found" });
         }
 
         const type = req.query;
         // Include the roleId in the query conditions
-        const query = { ...type, permissionid: perId };
+        const query = { ...type, role: roleId };
 
         const files = await FileModel.find(query);
         return res.json(files);
@@ -40,8 +61,6 @@ const getFilebyPermissionID = asyncHandler(async (req, res) => {
         return res.status(500).json({ message: "Server error", error: error.message });
     }
 });
-
-
 
 
 
@@ -148,5 +167,5 @@ const updateTextById = asyncHandler(async (req, res) => {
 })
 module.exports = {
     updateFileById, getText, updateTextById,
-    handleUpload, getFile, handleUploads, handleS3Upload, deleteFileS3, getAllFiles, deleteFile,getFilebyPermissionID
+    handleUpload, getFile, handleUploads, handleS3Upload, deleteFileS3, getAllFiles, deleteFile,getFilebyRoleID
 }
